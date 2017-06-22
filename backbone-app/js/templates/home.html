@@ -1,0 +1,29 @@
+<div class="main">
+	<h2></h2>
+<div id="page">
+  <div id="contributors-list">
+    <ul class="contributors">
+       <% _.each(categories, function(category){ %>
+
+       <li style="width:<%= category.get('picWidth')%>; height: <%= category.get('picWidth')%>">
+       <div class="contributor" id="<%= category.get('name')%>" style="width:<%= category.get('picWidth')%>; height: <%= category.get('picWidth')%>">
+          <ul>
+            <li class="pic" style="width:<%= category.get('picWidth')%>; height: <%= category.get('picWidth')%>">
+              <p>
+                <a href="/category/<%=category.get('id')%>"  data-wa-link="<%=category.get('id')%>" onclick="if (markUserTime) { markUserTime('link_' + this.getAttribute('data-wa-link')); }">
+                  <img data_name="<%=category.get('id')%>" src="https://dummyimage.com/<%= category.get('picWidth')%>x<%= category.get('picWidth')%>/688f43/ffffff&text=<%=category.get('name')%>" onload="if (markUserTime) { markUserTime( 'img_' + this.getAttribute('data_name')); }"/>
+                </a>
+              </p>
+            </li>
+            <li class="username" style="width:<%= category.get('picWidth')%>;">
+                <p><%=category.get('details')%></p>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+</div>
+<div class="sidebar"></div>

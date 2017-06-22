@@ -1,0 +1,30 @@
+<div class="main">
+	<h2></h2>
+<div id="page">
+  <div id="contributors-list">
+    <ul class="contributors">
+       <% _.each(products, function(product){ %>
+
+       <li style="width:<%= product.get('picWidth')%>; height: <%= product.get('picWidth')%>">
+       <div class="contributor" id="<%= product.get('name')%>" style="width:<%= product.get('picWidth')%>; height: <%= product.get('picWidth')%>">
+          <ul>
+            <li class="pic" style="width:<%= product.get('picWidth')%>; height: <%= product.get('picWidth')%>">
+              <p>
+                <a data-wa-link="<%=product.get('name')%>" class="product_link" href="/product/<%=product.get('name')%>" onclick="if (markUserTime) { markUserTime('link_' + this.getAttribute('data-wa-link')); }">
+                  <img data_name="<%=product.get('name')%>" src="https://dummyimage.com/<%= product.get('picWidth')%>x<%= product.get('picWidth')%>/688f43/ffffff&text=<%=product.get('name')%>" onload="if (markUserTime) { markUserTime( 'img_' + this.getAttribute('data_name')); }"/>
+                </a>
+              </p>
+            </li>
+            <li class="username" style="width:<%= product.get('picWidth')%>;">
+                <p><%=product.get('details')%></p>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+</div>
+<div class="sidebar"></div>
+<script type="text/javascript">if (markUserTime) { markUserTime('category_content'); }</script>

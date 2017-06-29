@@ -1,1 +1,1 @@
-# RUM
+# Exercises

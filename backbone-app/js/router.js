@@ -1,28 +1,27 @@
 define('router',['jquery', 'underscore', 'backbone'], function($,_,Backbone){
   var Router = Backbone.Router.extend({
     routes : {
-      '':'showHome',
-      '/':'showHome',
-      'category/:categoryid':'showCategory',
-      'product/:productid':'showProduct'
+      '':'showPersons',
+      '/':'showPersons',
+      '/person/:pid': 'addEditPerson',
+      'upload':'showUpload'
     },
-    showHome : function(){
-      require(['js/views/home.js'], function(HomeView){
-        var homeView = new HomeView();
-        homeView.categories.fetch();
-
-        //  homeView.render();
+    showPersons : function(){
+      require(['js/views/persons.js'], function(PersonsView){
+        var personsView = new PersonsView();
+        personsView.persons.fetch();
       });
     },
-    showCategory: function(categoryid){
-      require(['/js/views/category.js'], function(CategoryView){
-        var categoryView = new CategoryView(categoryid);
+    addEditPerson: function(pid){
+      require(['/js/views/person.js'], function(PersonView){
+        var personView = new PersonView(pid);
       });
     },
-    showProduct: function(productid){
-      require(['/js/views/product.js'], function(ProductView){
-        var productView = new ProductView(productid);
-      });
+    showUpload: function(){
+      require(['/js/views/upload.js'], function(UploadView){
+        var uploadView = new UploadView();
+        uploadView.render();
+      })
     }
   });
 

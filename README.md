@@ -25,7 +25,7 @@
 chmod 400 \<key pair file\>
 for e.g. chmod 400 awstraining.pem
 1. Open terminal and type the following to SSH into your EC2 instance:
-ssh -i <key pair file> ec2-user@<public ip of ec2 launched>
+ssh -i \<key pair file\> ec2-user@\<public ip of ec2 launched\>
 for e.g. ssh -i awstraining.pem ec2-user@52.26.195.25
 
 ## Download & unzip Code
@@ -45,11 +45,14 @@ node index.js
 
 ## Hello World
 1. Navigate to the EC2 dashboard and find the public ip of the webserver
-1. Navigate to http://<public ip> to see the hello world page.
-1. Show application does not work and needs a database connection
+1. Navigate to http://\<public ip\>/hello to see the hello world page.
 
 # Exercise 1a
 ## Create an S3 bucket
+1. Navigate to Services -> S3 -> create bucket
+1. provide a bucket name for e.g. my-sample-bucket-nitin and click next. 
+1. In step 3, in the section manage public permissions select read and write for Objects. Click next 
+1. Click on create bucket.
 1. Upload an image to the s3 bucket.
 2. Access S3 bucket using the browser.
 

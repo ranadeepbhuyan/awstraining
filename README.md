@@ -11,7 +11,7 @@
 1. Click Next:Configure Security Group.
 1. Click Add Rule -> Select type=http 
 1. Click Review and Launch
-1. Choose Create a new key pair, give a key pair name and download it to a safe location on your computer, and then choose Launch Instances. Note the name of the .pem filename. It will be used in the next step
+1. Choose Create a new key pair, give a key pair name (e.g. awstraining.pem) and download it to a safe location on your computer, and then choose Launch Instances. Note the name of the .pem filename. It will be used in the next step
 
 ## SSH to EC2 instance
 1. Navigate to Services -> EC2 -> 1 running instances.
@@ -20,16 +20,25 @@
 
 ### Windows machine
 ### Mac
-1. Open terminal and 
+1. Open terminal and navigate to the folder where you have downloaded the key pair.
+1. Change the permissions of the .pem file so only the root user can read it:
+chmod 400 <key pair file>
+for e.g. chmod 400 awstraining.pem
+1. Open terminal and type the following to SSH into your EC2 instance:
+ssh -i <key pair file> ec2-user@<public ip of ec2 launched>
+for e.g. ssh -i awstraining.pem ec2-user@52.26.195.25
 
-ssh -i awstraining.pem ec2-user@52.26.195.25
-
-## Download Code
-wget https://github.com/nmehra/awstraining/archive/master.zip
+## Download & unzip Code
+1. Type: wget https://github.com/nmehra/awstraining/archive/master.zip
+1. Type: unzip master.zip
 
 ## Install Node 
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | sudo bash
+1. To download code type: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | sudo bash
+1. Exit EC2 instance and log back in. 
+1. Type: sudo bash
+1. Type: nvm install 6.11.0
+1. To check version type: node -e "console.log('Running Node.js ' + process.version)"
 
 ## Run Service
 node index.js

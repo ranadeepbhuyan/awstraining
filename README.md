@@ -22,7 +22,7 @@
 ### Mac
 1. Open terminal and navigate to the folder where you have downloaded the key pair.
 1. Change the permissions of the .pem file so only the root user can read it:
-chmod 400 <key pair file>
+chmod 400 \<key pair file\>
 for e.g. chmod 400 awstraining.pem
 1. Open terminal and type the following to SSH into your EC2 instance:
 ssh -i <key pair file> ec2-user@<public ip of ec2 launched>

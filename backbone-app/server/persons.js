@@ -1,4 +1,4 @@
-var connection = require('./connection');
+//var connection = require('./connection');
 var persons = function(app){
 
   app.post('/server/persons', function(req, res){

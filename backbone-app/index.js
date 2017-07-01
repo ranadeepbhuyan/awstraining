@@ -10,6 +10,9 @@ require('./server/persons')(app);
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
+app.get('/hello', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
 
 app.get('/upload', function(req, res){
   res.sendFile(__dirname + '/index.html');

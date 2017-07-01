@@ -3,8 +3,15 @@ define('router',['jquery', 'underscore', 'backbone'], function($,_,Backbone){
     routes : {
       '':'showPersons',
       '/':'showPersons',
-      '/person/:pid': 'addEditPerson',
-      'upload':'showUpload'
+      'person/:pid': 'addEditPerson',
+      'upload':'showUpload',
+      'hello':'showHello'
+    },
+    showHello : function(){
+      require(['js/views/hello.js'], function(HelloView){
+        var helloView = new HelloView();
+        helloView.render();
+      });
     },
     showPersons : function(){
       require(['js/views/persons.js'], function(PersonsView){

@@ -19,13 +19,20 @@
 1. Note the "Status Checks" column. It should show a tick.
 
 ### Windows machine
+1. Open puttygen to convert the .pem file to a putty supported format .ppk file.
+1. Click on load, select the .pem file and click open.
+1. Click on: save private key and type a suitable \<filename\>.ppk file.
+1. Open putty and enter in the hostname field: ec2-user@\<public ip of the ec2 instance launched\>.
+1. Choose connection -> ssh -> auth and choose the private key file generated in a previous step.
+1. Click open to open the ssh connection to the ec2 instance.
+
 ### Mac
 1. Open terminal and navigate to the folder where you have downloaded the key pair.
 1. Change the permissions of the .pem file so only the root user can read it:
 chmod 400 \<key pair file\>
 for e.g. chmod 400 awstraining.pem
 1. Open terminal and type the following to SSH into your EC2 instance:
-ssh -i \<key pair file\> ec2-user@\<public ip of ec2 launched\>
+ssh -i \<key pair file\> ec2-user@\<public ip of ec2 instance launched\>
 for e.g. ssh -i awstraining.pem ec2-user@52.26.195.25
 
 ## Download & unzip Code

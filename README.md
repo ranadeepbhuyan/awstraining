@@ -55,6 +55,11 @@ node index.js
 1. Click on create bucket.
 1. Upload an image to the s3 bucket.
 2. Access S3 bucket using the browser.
+## Create and download access keys
+1. Navigate to Services -> IAM -> Security Status -> Delete your root access keys section.
+1. Click: manage security credentials -> continue to security credentials -> Access Keys -> Create New Access Key
+1. Click: Show Access key; Download key file and keep it safe. 
+1. We are going to use this key and secret to programmatically access the S3 bucket from the ec2 instance.
 
 # Exercise 2
 ## Create an RDS instance
@@ -77,9 +82,16 @@ node index.js
 1. Set the hostname to the endpoint created for the RDS instance.
 1. Set the username and password to the one provided while creating the RDS. 
 1. Click on the created connection to open it.
-1. Click open sql script createtable.sql and execute it to create the required tables.
 
 ## Create tables by running the scripts
-1. 
-## Connect application with rds instance
+1. Click open sql script: createtable.sql and execute it to create the required tables.
 
+## Connect application with rds instance
+1. Stop server on the terminal if its already running.
+1. Open ~/awstraining-master/backbone-app/server/upload.js and uncomment line 3.
+1. restart server by typing: node index.js
+1. navigate in your local browser to http://\<public ip\>/person.
+1. Add a person by giving details and choosing an image path.
+1. Observe the details of the person entered are shown below.
+1. Open workbench and try to see if the details entered have been created.
+1. Open S3 page to see if the image uploaded is there.

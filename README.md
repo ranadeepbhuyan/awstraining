@@ -58,7 +58,28 @@ node index.js
 
 # Exercise 2
 ## Create an RDS instance
+1. Navigate to Services -> RDS -> Instances -> Launch DB Instance 
+1. Select MySQL -> Dev/Test -> Next Step
+1. In Instance Specifications section select DB Instance Class as: db.t2.micro
+1. In Multi-AZ Deployment select: No. Keep the other fields below as defaults in the Instance Specifications section
+1. In Settings section provide a name for the DB Instance Identifier for e.g. my-test-db.
+1. Give username as: admin and a suitable password. Please note the details provided in the settings section. We need them in connecting to the db. Click next.
+1. In the next page, in Network & Security section, in VPC Security Group(s) choose: launch-wizard-1 (vpc)
+1. In Database options, give a database name as: peopledb and Launch DB Instance.
+1. Note the instance endpoint from the Instances page. (it may take sometime to create the instance.)
+## Set security group to allow inbound connections on 3306 port.
+1. Navigate to the security group of the RDS instance created and edit inbound rules.
+1. Click Add Rule, choose custom tcp and enter 3306 in the port range. 
+1. Select source as: my ip.
 ## Connect to the RDS instance using mysql client.
+1. Open mysql workbench by opening finder -> applications -> mysqlworkbench.
+1. Click + to create a new connection. Give a name to the connection for e.g. mysql-test.
+1. Set the hostname to the endpoint created for the RDS instance.
+1. Set the username and password to the one provided while creating the RDS. 
+1. Click on the created connection to open it.
+1. Click open sql script createtable.sql and execute it to create the required tables.
+
 ## Create tables by running the scripts
+1. 
 ## Connect application with rds instance
 

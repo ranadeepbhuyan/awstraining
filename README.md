@@ -9,7 +9,8 @@
 1. Select an Amazon Linux AMI 2017.03.1 -> Choose instance type as t2-micro -> Configure instance as given defaults -> Add Storage as given defaults -> Add Tags
 1. Click Add Tag -> key=name and value=webserver 
 1. Click Next:Configure Security Group.
-1. Click Add Rule -> Select type=http 
+1. For the existing ssh rule select source= anywhere
+1. Click Add Rule -> Select type=custom tcp and source=anywhere
 1. Click Review and Launch
 1. Choose Create a new key pair, give a key pair name (e.g. awstraining.pem) and download it to a safe location on your computer, and then choose Launch Instances. Note the name of the .pem filename. It will be used in the next step
 
@@ -41,18 +42,19 @@ for e.g. ssh -i awstraining.pem ec2-user@52.26.195.25
 
 ## Install Node 
 
-1. To download code type: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | sudo bash
+1. To download code type: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh |  bash
 1. Exit EC2 instance and log back in. 
-1. Type: sudo bash
 1. Type: nvm install 6.11.0
 1. To check version type: node -e "console.log('Running Node.js ' + process.version)"
 
 ## Run Service
-node index.js
+1. type: cd awstraining-master/backbone-app/
+1. type: npm install
+1. node index.js
 
 ## Hello World
 1. Navigate to the EC2 dashboard and find the public ip of the webserver
-1. Navigate to http://\<public ip\>/hello to see the hello world page.
+1. Navigate to http://\<public ip:3001\>/hello to see the hello world page.
 
 # Exercise 1a
 ## Create an S3 bucket
@@ -81,23 +83,23 @@ node index.js
 1. Note the instance endpoint from the Instances page. (it may take sometime to create the instance.)
 ## Set security group to allow inbound connections on 3306 port.
 1. Navigate to the security group of the RDS instance created and edit inbound rules.
-1. Click Add Rule, choose custom tcp and enter 3306 in the port range. 
-1. Select source as: my ip.
-## Connect to the RDS instance using mysql client.
-1. Open mysql workbench by opening finder -> applications -> mysqlworkbench.
-1. Click + to create a new connection. Give a name to the connection for e.g. mysql-test.
-1. Set the hostname to the endpoint created for the RDS instance.
-1. Set the username and password to the one provided while creating the RDS. 
-1. Click on the created connection to open it.
+1. Click Add Rule, choose type=mysql/aurora and enter 3306 in the port range. 
+1. Select source as: anywhere.
+## Connect to the RDS instance using mysql client from your ec2 instance.
+1. SSH into your EC2 instance created.
+1. Run the following script to install mysql client: yum install mysql 
+1. Execute the following command to connect to your db instance: mysql -u admin  -h \<rds server instance\> -p
+1. Provide the password given.
+1. the sql prompt should be shown.
 
 ## Create tables by running the scripts
-1. Click open sql script: createtable.sql and execute it to create the required tables.
+1. Click open sql script: createtable.sql and execute it on sql prompt to create the required tables.
 
 ## Connect application with rds instance
 1. Stop server on the terminal if its already running.
 1. Open ~/awstraining-master/backbone-app/server/upload.js and uncomment line 3.
 1. restart server by typing: node index.js
-1. navigate in your local browser to http://\<public ip\>/person.
+1. navigate in your local browser to http://\<public ip:3001\>/person.
 1. Add a person by giving details and choosing an image path.
 1. Observe the details of the person entered are shown below.
 1. Open workbench and try to see if the details entered have been created.

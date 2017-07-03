@@ -13,9 +13,11 @@ app.get('/', function(req, res){
 app.get('/hello', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
-
+app.get('/person', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
 app.get('/upload', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(3001);
+app.listen(80);

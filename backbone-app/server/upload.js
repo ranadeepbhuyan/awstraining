@@ -1,5 +1,7 @@
 var Busboy = require('busboy');
 var uploadS3 = require('./uploadS3');
+var connection = require('./connection');
+
 
 var upload = function(app, express){
 
@@ -7,6 +9,12 @@ var upload = function(app, express){
   //  console.log('uploaded file ' + req.files.file.path);
     // Create an Busyboy instance passing the HTTP Request headers.
 		var busboy = new Busboy({ headers: req.headers });
+    var person = {};
+
+    busboy.on('field', function(fieldName, fieldValue, valTruncated,keyTruncated) {
+      console.log('fieldname:' + fieldName + ', fieldValue=' + fieldValue);
+      person[fieldName] = fieldValue;
+    });
 
 		// Listen for event when Busboy finds a file to stream.
 		busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
@@ -22,14 +30,26 @@ var upload = function(app, express){
 			// Completed streaming the file.
 			file.on('end', function () {
 				console.log('Finished with ' + fieldname);
+        connection.query(
+        'INSERT INTO persons SET ?',person,
+        function (err, results) {
+          if (err){
+            console.log(err);
+          }
+          else {
+            console.log(results);
+          }
+        });
+        res.json(person);
+        res.end();
         var finalBuffer = Buffer.concat(this.fileRead);
 
         var uploadedFileData = {
                 buffer: finalBuffer,
                 filename: filename,
                 headers : {
-                   'Content-Length': finalBuffer.length,
-                   'Content-Type': mimetype,
+                   'content-length': finalBuffer.length,
+                   'content-type': mimetype,
                    'x-amz-acl': 'public-read'
                  }
               };

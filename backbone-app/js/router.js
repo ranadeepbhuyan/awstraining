@@ -4,6 +4,7 @@ define('router',['jquery', 'underscore', 'backbone'], function($,_,Backbone){
       '':'showPersons',
       '/':'showPersons',
       'person/:pid': 'addEditPerson',
+      'person': 'addEditPerson',
       'upload':'showUpload',
       'hello':'showHello'
     },
@@ -22,6 +23,7 @@ define('router',['jquery', 'underscore', 'backbone'], function($,_,Backbone){
     addEditPerson: function(pid){
       require(['/js/views/person.js'], function(PersonView){
         var personView = new PersonView(pid);
+        personView.render();
       });
     },
     showUpload: function(){
@@ -39,9 +41,6 @@ define('router',['jquery', 'underscore', 'backbone'], function($,_,Backbone){
       event.preventDefault();
       router.navigate($(event.target.parentElement).attr("href"), {trigger: true});
     });
-    $("body").get(0).addEventListener("click", function(){
-      window.sendData();
-    }, true);
   } ;
 
   return {initialize:initialize};

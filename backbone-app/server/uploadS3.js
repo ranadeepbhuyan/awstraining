@@ -9,7 +9,7 @@ Knox.aws = Knox.createClient({
 });
 
 var uploadS3 = function(file, next){
-  Knox.aws.putBuffer( file.buffer, '/artwork/' + file.filename, file.headers, function(err, response){
+  Knox.aws.putBuffer( file.buffer,  file.filename, file.headers, function(err, response){
       if (err) {
         console.error('error streaming image: ', new Date(), err.message);
         next(err);

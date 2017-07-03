@@ -1,6 +1,6 @@
 var Busboy = require('busboy');
-var uploadS3 = require('./uploadS3');
-var connection = require('./connection');
+//var uploadS3 = require('./uploadS3');
+//var connection = require('./connection');
 
 
 var upload = function(app, express){
@@ -42,14 +42,17 @@ var upload = function(app, express){
         });
         res.json(person);
         res.end();
+        return;
         var finalBuffer = Buffer.concat(this.fileRead);
-
+        console.log('finalbuffer:' + finalBuffer.length);
+        console.log('mimetype:' + mimetype);
+        console.log('filename:' + filename);
         var uploadedFileData = {
                 buffer: finalBuffer,
                 filename: filename,
                 headers : {
-                   'content-length': finalBuffer.length,
-                   'content-type': mimetype,
+                   'Content-Length': finalBuffer.length,
+                   'Content-Type': mimetype,
                    'x-amz-acl': 'public-read'
                  }
               };

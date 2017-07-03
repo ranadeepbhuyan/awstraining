@@ -13,29 +13,30 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/person.html','models
     },
     uploadPersonDetails:function(){
       event.preventDefault();
-      var picture = $('#inputFile')[0].files[0];
+      //var picture = $('#inputFile')[0].files[0];
       var firstname = $('#firstName')[0].value;
       var lastname = $('#lastName')[0].value;
       var address = $('#address')[0].value;
       console.log('name:' + firstname + ' ' + lastname);
-      var data = new FormData();
-      data.append('file', picture);
-      data.append('firstname', firstname);
-      data.append('lastname', lastname);
-      data.append('address', address);
+      var data = {};
+      //data.append('file', picture);
+      data.firstname = firstname;
+      data.lastname = lastname;
+      data.address = address;
+      console.log(JSON.stringify(data));
       that = this;
       $.ajax({
-        url: 'server/upload/',
-        data: data,
+        url: 'server/person/',
+        data: JSON.stringify(data),
         cache: false,
-        contentType: false,
+        contentType: 'application/json',
         processData: false,
         type: 'POST',
         success: function(data){
-          that.showFile(data);
+          console.log('data saved')
         },
         error: function(data){
-          alert('no upload');
+          alert('error saving data');
         }
       });
     }

@@ -4,7 +4,7 @@ var app = express();
 app.use(express.static('.'));
 app.use(express.static('./js'))
 
-require('./server/upload')(app, express);
+require('./server/person')(app, express);
 require('./server/persons')(app);
 
 app.get('/', function(req, res){

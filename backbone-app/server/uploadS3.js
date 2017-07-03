@@ -12,16 +12,16 @@ var uploadS3 = function(file, next){
   Knox.aws.putBuffer( file.buffer,  file.filename, file.headers, function(err, response){
       if (err) {
         console.error('error streaming image: ', new Date(), err.message);
-        next(err);
+        return next(err);
       }
 
       if (response.statusCode !== 200) {
         console.error('error streaming image 123: ', new Date(), response.statusCode);
-        next(err);
+        return next(err);
       }
       console.log('Amazon response statusCode: ', response.statusCode);
       console.log('Your file was uploaded');
-      next(err, '/artwork/' + file.filename);
+      return next(err, '/artwork/' + file.filename);
     });
 }
 

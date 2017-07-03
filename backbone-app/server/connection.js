@@ -1,6 +1,6 @@
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-    host     : 'my-test-db.cajocrvonnlr.us-east-2.rds.amazonaws.com',
+    host     : 'my-test-db.cgkq5citycpb.eu-west-1.rds.amazonaws.com',
     user     : 'admin',
     password : 'Intuit123',
     database    : 'peopledb'

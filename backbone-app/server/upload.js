@@ -1,6 +1,6 @@
 var Busboy = require('busboy');
 //var uploadS3 = require('./uploadS3');
-//var connection = require('./connection');
+var connection = require('./connection');
 
 
 var upload = function(app, express){
@@ -42,7 +42,7 @@ var upload = function(app, express){
         });
         res.json(person);
         res.end();
-        return;
+        /*return;
         var finalBuffer = Buffer.concat(this.fileRead);
         console.log('finalbuffer:' + finalBuffer.length);
         console.log('mimetype:' + mimetype);
@@ -67,7 +67,8 @@ var upload = function(app, express){
           }
           console.log('till here')
           res.end();
-    });
+
+    });*/
 			});
 		});
 

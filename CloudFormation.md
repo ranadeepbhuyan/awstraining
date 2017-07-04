@@ -2,7 +2,8 @@
 Copy the entire parameters block including the enclosing curly braces ({}) from below. Paste the block into the JSON editor, replacing everything that is currently there.
 This snippet adds parameters for specifying your server's instance type and an Amazon EC2 key-pair name to associate with the server.
 
-```{
+```
+{
   "Parameters": {
     "InstanceType": {
       "Description": "Server EC2 instance type",

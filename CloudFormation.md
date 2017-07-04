@@ -77,3 +77,39 @@ Copy the entire parameters block including the enclosing curly braces ({}) from 
   }
 }
 ```
+### Specify Resource Properties
+Select the Properties tab. Copy the entire parameters block including the enclosing curly braces ({}) from below. On the Properties tab, paste the block into the JSON editor, replacing everything that is currently there.
+```
+{
+  "Resources": {
+    "ServerInstance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": {
+          "Ref": "InstanceType"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "AWSRegionArch2AMI",
+            {
+              "Ref": "AWS::Region"
+            },
+            {
+              "Fn::FindInMap": [
+                "AWSInstanceType2Arch",
+                {
+                  "Ref": "InstanceType"
+                },
+                "Arch"
+              ]
+            }
+          ]
+        },
+        "KeyName": {
+          "Ref": "KeyName"
+        }
+      }
+    }
+  }
+}
+```
